@@ -14,8 +14,8 @@ export default function News() {
       let data = await fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=6237571e261b4f0a9b7a910d1223fe4a&page=${page}&pageSize=16`);
       let res = await data.json();
       setLoad(false)
-      );
-      let res = await data.json();
+     
+   
 
       setTotalArticles(res.totalResults);
       setNewsList(res.articles);
