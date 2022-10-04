@@ -11,13 +11,9 @@ export default function News() {
   useEffect(() => {
     (async () => {
       setLoad(true);
-      let data = await fetch(
-
-        `https://newsapi.org/v2/top-headlines?country=in&apiKey=6237571e261b4f0a9b7a910d1223fe4a&page=${page}&pageSize=16`
-      );
+      let data = await fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=6237571e261b4f0a9b7a910d1223fe4a&page=${page}&pageSize=16`);
       let res = await data.json();
       setLoad(false)
-        `https://newsapi.org/v2/top-headlines?country=in&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${page}&pageSize=16`
       );
       let res = await data.json();
 
