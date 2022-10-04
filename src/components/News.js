@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import NewsItems from "./NewsItem";
 import Spinner from "./Spinner";
 
-export default function News() {
+export default function News({ pageSize, country, category, title }) {
   const [newsList, setNewsList] = useState([]);
   const [totalArticles, setTotalArticles] = useState(0);
   const [page, setPage] = useState(1);
-  const [load,setLoad] = useState(false)
+  const [load, setLoad] = useState(false);
+
+  document.title = `${title} - NewsBytes`;
 
   useEffect(() => {
     (async () => {
       setLoad(true);
-      let data = await fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=6237571e261b4f0a9b7a910d1223fe4a&page=${page}&pageSize=16`);
+      let data = await fetch(
+        `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=6237571e261b4f0a9b7a910d1223fe4a&page=${page}&pageSize=${pageSize}`
+      );
       let res = await data.json();
-      setLoad(false)
-     
-   
-
+      setLoad(false);
+      console.log(res);
       setTotalArticles(res.totalResults);
       setNewsList(res.articles);
     })();
@@ -24,29 +26,29 @@ export default function News() {
 
   return (
     <div className="container my-3">
-      <h1 className= 'text-center'>News Bytes - Top Headlines</h1>
-      
+      <h1 className="text-center" style={{ marginTop: "90px" }}>
+        News Bytes - {title}
+      </h1>
       {load && <Spinner />}
       <div className="row">
-      <div className="container d-flex justify-content-between">
-        <button
-          disabled={page <= 1 ? true : false}
-          type="button"
-          onClick={() => setPage(page - 1)}
-          className="btn btn-dark"
-        >
-          &larr; Previous
-        </button>
-        <button
-          disabled={page >= Math.ceil(totalArticles / 16) ? true : false}
-
-          type="button"
-          onClick={() => setPage(page + 1)}
-          className="btn btn-dark"
-        >
-          Next &rarr;
-        </button>
-      </div>
+        <div className="container d-flex justify-content-between">
+          <button
+            disabled={page <= 1 ? true : false}
+            type="button"
+            onClick={() => setPage(page - 1)}
+            className="btn btn-dark my-3"
+          >
+            &larr; Previous
+          </button>
+          <button
+            disabled={page >= Math.ceil(totalArticles / 16) ? true : false}
+            type="button"
+            onClick={() => setPage(page + 1)}
+            className="btn btn-dark my-3"
+          >
+            Next &rarr;
+          </button>
+        </div>
         {newsList.map((news) => (
           <div key={news.url} className="col md-4">
             <NewsItems
@@ -60,6 +62,8 @@ export default function News() {
                   : news.urlToImage
               }
               newsUrl={news.url}
+              author={news.author}
+              date={news.publishedAt}
             />
           </div>
         ))}
@@ -69,16 +73,15 @@ export default function News() {
           disabled={page <= 1 ? true : false}
           type="button"
           onClick={() => setPage(page - 1)}
-          className="btn btn-dark"
+          className="btn btn-dark my-3"
         >
           &larr; Previous
         </button>
         <button
           disabled={page >= Math.ceil(totalArticles / 16) ? true : false}
-
           type="button"
           onClick={() => setPage(page + 1)}
-          className="btn btn-dark"
+          className="btn btn-dark my-3"
         >
           Next &rarr;
         </button>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import loading from './Settings.gif'
+import loading from './utils/Settings.gif'
 
 export default function Spinner() {
     return (
