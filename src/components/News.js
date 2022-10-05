@@ -14,7 +14,7 @@ export default function News({ pageSize, country, category, title }) {
     (async () => {
       setLoad(true);
       let data = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=6237571e261b4f0a9b7a910d1223fe4a&page=${page}&pageSize=${pageSize}`
+        `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=1592c5d1cebc450fbf077f986dbc51f9&page=${page}&pageSize=${pageSize}`
       );
       let res = await data.json();
       setLoad(false);
@@ -22,7 +22,7 @@ export default function News({ pageSize, country, category, title }) {
       setTotalArticles(res.totalResults);
       setNewsList(res.articles);
     })();
-  }, [page]);
+  }, [page,country]);
 
   return (
     <div className="container my-3">
@@ -58,7 +58,7 @@ export default function News({ pageSize, country, category, title }) {
               }
               imageUrl={
                 !news.urlToImage
-                  ? "https://img.etimg.com/thumb/msid-94624462,width-1070,height-580,imgsize-11194,overlay-ettech/photo.jpg"
+                  ? "https://tse2.mm.bing.net/th?id=OIP.Zv6FHN0b822DALpTkwp_KQHaEG&pid=Api&P=0"
                   : news.urlToImage
               }
               newsUrl={news.url}

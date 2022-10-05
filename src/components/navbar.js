@@ -1,7 +1,9 @@
 import React from "react";
+import Dropdown from "./Dropdown";
+
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({selectedCountry}) {
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -58,6 +60,12 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
+              <li className="nav-item ">
+                <Dropdown 
+                className="float-end" 
+                selectedCountry={selectedCountry}
+                />
+              </li>
           </div>
         </div>
       </nav>
