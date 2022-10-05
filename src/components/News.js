@@ -66,7 +66,7 @@ export default function News({ pageSize, country, category, title }) {
               date={news.publishedAt}
             />
           </div>
-        ))}
+        ))}npm s
       </div>
       <div className="container d-flex justify-content-between">
         <button
