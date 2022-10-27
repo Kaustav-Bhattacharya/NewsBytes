@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function NotFound() {
   return (
     <div className="container">
-      <div className="row">
+      <div  className="row text-center" style={{ marginTop: "90px" }}>
         <div className="col-lg-12">
           <Link to='/'>
             <img
